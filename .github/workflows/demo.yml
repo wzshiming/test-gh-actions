@@ -1,0 +1,17 @@
+name: GitHub Actions Demo
+on: [push]
+jobs:
+  Explore:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "此 Job 由 ${{ github.event_name }} 事件触发."
+      - run: echo "此 job 现在运行在 ${{ runner.os }} 服务器器上!"
+      - run: echo "Git 仓库为 ${{ github.repository }} 分支 ${{ github.ref }}."
+      - name: 切到当前环境的代码
+        uses: actions/checkout@v3
+      - run: echo "${{ github.repository }} 仓库已经克隆到当前环境."
+      - run: echo "现在已经准备好环境."
+      - name: 列出当前环境的文件
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "当前状态 ${{ job.status }}."
